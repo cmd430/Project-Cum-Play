@@ -18,6 +18,8 @@ CREATE TABLE files (
   "filesize" INTEGER NOT NULL,
   "in_album" TEXT,
   "public" INTEGER NOT NULL DEFAULT 1,
+  "pinned" INTEGER NOT NULL DEFAULT 0,
+  "pinned_at" NUMERIC,
   PRIMARY KEY("id"),
   FOREIGN KEY("uploaded_by") REFERENCES users("username") ON UPDATE CASCADE,
   FOREIGN KEY("in_album") REFERENCES albums("album_id") ON DELETE CASCADE
@@ -30,6 +32,9 @@ CREATE TABLE albums (
   "uploaded_at" NUMERIC NOT NULL,
   "uploaded_until" NUMERIC,
   "public" INTEGER NOT NULL DEFAULT 1,
+  "order" TEXT NOT NULL DEFAULT "[]",
+  "pinned" INTEGER NOT NULL DEFAULT 0,
+  "pinned_at" NUMERIC,
   PRIMARY KEY("id"),
   FOREIGN KEY("uploaded_by") REFERENCES users("username") ON UPDATE CASCADE
 );
